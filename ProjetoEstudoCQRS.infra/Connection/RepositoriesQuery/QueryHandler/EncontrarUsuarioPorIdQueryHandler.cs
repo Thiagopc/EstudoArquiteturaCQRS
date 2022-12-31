@@ -15,6 +15,8 @@ namespace ProjetoEstudoCQRS.infra.Connection.RepositoriesQuery.QueryHandler
     public class EncontrarUsuarioPorIdQueryHandler : IEncontrarUsuarioPorIdQueryHandler
     {
         private readonly QueryConnection _connection;
+
+
         public EncontrarUsuarioPorIdQueryHandler(QueryConnection connection)
         {
             this._connection = connection;

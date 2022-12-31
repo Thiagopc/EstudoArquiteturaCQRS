@@ -15,8 +15,7 @@ namespace ProjetoEstudoCQRS.infra.Connection
 
         public ConnectionDb(DbContextOptions<ConnectionDb> options)
             :base(options)
-        {
-            this.Database.EnsureDeleted();
+        {            
             this.Database.EnsureCreated();
         }
 

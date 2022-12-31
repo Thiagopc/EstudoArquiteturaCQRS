@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ProjetoEstudoCQRS.infra.Connection.RepositoriesQuery
 {
-    public abstract class QueryConnection
+    public  class QueryConnection
     {
         private readonly string _strconnection;
         public QueryConnection(IConfiguration configuration) {

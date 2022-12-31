@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace ProjetoEstudoCQRS.domain.Interfaces.Query
 {
-    public interface IQueryDispatcher<T> where T: IQuery
+    public interface IQueryDispatcher
     {
-        Task<IList<Tresult>> Send<Tresult>(T query) ;
+        Task<IList<Tout>> Send<Tin, Tout>(Tin query) where Tin : IQuery;
     }
 }

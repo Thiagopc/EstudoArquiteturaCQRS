@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProjetoEstudoCQRS.domain.QueryToDispatcher
 {
-    public class QueryDispatcher : IQueryDispatcher<IQuery>
+    public class QueryDispatcher : IQueryDispatcher
     {
 
         private readonly IServiceProvider _service;
@@ -17,15 +17,17 @@ namespace ProjetoEstudoCQRS.domain.QueryToDispatcher
 
         }
 
-        public async Task<IList<IResult>> Send<IResult>(IQuery query)
+        public async Task<IList<Tout>> Send<Tin, Tout>(Tin query) where Tin : IQuery
         {
-            var handler = _service.GetService(typeof(IQueryDispatcher<IQuery>));
+            var handler = _service.GetService(typeof(IQueryHandler<Tin, Tout>));
 
             if (handler != null)
-               return await((IQueryDispatcher<IQuery>)handler).Send<IResult>(query);
+                return await ((IQueryHandler<Tin, Tout>)handler).Handle(query);
 
             else
                 throw new Exception($"Command doesn't have any handler {query.GetType().Name}");
         }
+
+
     }
 }
