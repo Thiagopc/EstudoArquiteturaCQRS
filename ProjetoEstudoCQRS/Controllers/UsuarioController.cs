@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using ProjetoEstudoCQRS.domain.Command;
 using ProjetoEstudoCQRS.domain.Common;
-using ProjetoEstudoCQRS.domain.Entities;
 using ProjetoEstudoCQRS.domain.Interfaces.Command;
 using ProjetoEstudoCQRS.domain.Interfaces.Query;
 using ProjetoEstudoCQRS.domain.Query;
@@ -27,10 +25,8 @@ namespace ProjetoEstudoCQRS.Controllers
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
-        {
-            //var result = this._dispatcherquery.Send<UsuarioDisplay, EncontrarUsuarioPorIdQuery>(new EncontrarUsuarioPorIdQuery() {Id = id });
+        {            
             var result = await this._dispatcherquery.Send<EncontrarUsuarioPorIdQuery, UsuarioDisplay>(new EncontrarUsuarioPorIdQuery() { Id = id });
-
             return Ok(result);
         }
 
@@ -44,7 +40,6 @@ namespace ProjetoEstudoCQRS.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(AddNewUserCommand usuario)
         {
-
             await this._dispatchercommand.Send(usuario);
             return Ok();
         }

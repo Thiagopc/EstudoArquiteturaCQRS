@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjetoEstudoCQRS.domain.Interfaces.Command
 {
-    public interface ICommandHandler<T> : ICommandHandlerMark where T : ICommand
+    public interface ICommandHandler<T>   where T : ICommand
     {
         Task Handle(T command);
     }

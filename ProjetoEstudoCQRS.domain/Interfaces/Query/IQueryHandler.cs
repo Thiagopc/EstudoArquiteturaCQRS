@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace ProjetoEstudoCQRS.domain.Interfaces.Query
 {
-    public interface IQueryHandler<T,Tout> : IQueryHandlerMark where T: IQuery
+    public interface IQueryHandler<TinQuery,TResponse>  where TinQuery: IQuery
     {
-        Task<IList<Tout>> Handle(T query);
+        Task<IList<TResponse>> Handle(TinQuery query);
     }
 }
